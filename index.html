@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feliz Aniversário. ❤️</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <style>
+    body {
+      background: linear-gradient(to bottom, #050505, #f04bd4);
+      overflow-x: hidden;
+    }
+
+    .intro-screen {
+      position: fixed;
+      z-index: 1000;
+      background: url('header.jpg') center/contain no-repeat;
+      background-color: black;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: opacity 2.5s ease;
+    }
+
+    .intro-screen h1,
+    .intro-screen p {
+      color: white;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    }
+
+    .intro-screen.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    hgroup h2 {
+      color: white;
+    }
+
+    .site-content {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1.2s ease;
+    }
+
+    .site-content.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .bg-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .image-header {
+      position: relative;
+      width: 75vw;
+      height: 120vh;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: black;
+      padding: 20px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .image-header h1,
+    .image-header p {
+      color: black;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    }
+
+    .image-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .image-header h1,
+    .image-header p {
+      position: relative;
+      z-index: 1;
+    }
+
+    .floating-heart {
+      position: fixed;
+      top: 100%;
+      font-size: 2rem;
+      color: #ff4d6d;
+      animation: floatUp 10s infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.6;
+      }
+
+      100% {
+        transform: translateY(-120vh) translateX(50vw);
+        opacity: 0;
+      }
+    }
+
+    .fade-in {
+      animation: fadeIn ease 2s;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    img {
+      border-radius: 12px;
+    }
+
+    
+    .nav-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-inline: 1rem;
+    }
+
+    .nav-flex h1 {
+      margin: 0;
+    }
+
+    #musicBtn {
+      background: #00000000;
+      border: none;
+      padding: 6px 8px;
+      border-radius: 4px;
+      font-size: 16px;
+      color: white;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    #musicBtn:hover {
+      background: #03030300;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TELA INICIAL -->
+  <div id="intro" class="intro-screen">
+    <h1>FELIZ ANIVERSÁRIO! <i class="fa-solid fa-cake-candles"></i></h1>
+    <p>
+      Parabéns meu amor! Que seu dia seja cheio de felicidade, carinho e muitos mimos, porque você merece!<br>
+       Te amo muito, espero passar mais incontáveis aniversários ao seu lado!
+    </p>
+    <button onclick="startSite()">Clica aqui. <i class="fa-regular fa-heart"></i></button>
+  </div>
+
+  <!-- MÚSICA -->
+  <audio id="bgMusic" loop>
+    <source src="nossamusica.mp3" type="audio/mpeg" />
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <!-- PRINCIPAL -->
+  <div id="siteContent" class="site-content">
+    <!-- Navbar com botão de música alinhado à direita -->
+    <nav class="container-fluid nav-flex">
+      <h1>Feliz aniversário!</h1>
+      <button id="musicBtn" aria-label="Tocar música" onclick="toggleMusic()">
+        <i id="musicIcon" class="fa-solid fa-music"></i>
+      </button>
+    </nav>
+
+    <header class="image-header">
+      <video autoplay muted loop playsinline class="bg-video">
+        <source src="aniversario.mp4" type="video/mp4">
+      </video>
+      <div>
+        <h1>PARABÉNS!</h1>
+        <p>Você é uma pessoa maravilhosa que merece o mundo todo meu amor, muitos anos de vida e saúde,<br>
+          espero continuar ao seu lado pra sempre.</p>
+      </div>
+    </header>
+
+    <main class="container fade-in" style="text-align: center; margin-top: 4rem;">
+      <div class="grid">
+        <section>
+          <hgroup>
+            <h2>Te amo! <i class="fa-solid fa-cake-candles"></i></h2>
+          </hgroup>
+          <p>Nas palmas de tuas mãos<br>
+            leio as linhas da minha vida.<br>
+            Linhas cruzadas, sinuosas,<br>
+            interferindo no teu destino.<br>
+            Não te procurei, não me procurastes –<br>
+            íamos sozinhos por estradas diferentes.<br>
+            Indiferentes, cruzamos<br>
+            Passavas com o fardo da vida…<br>
+            Corri ao teu encontro.<br>
+            Sorri. Falamos.<br>
+            Esse dia foi marcado<br>
+            com a pedra branca<br>
+            da cabeça de um peixe.<br>
+            E, desde então, caminhamos<br>
+            juntos pela vida…<br>
+            – Cora Coralina.</p>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    function startSite() {
+      const intro = document.getElementById('intro');
+      const content = document.getElementById('siteContent');
+      intro.classList.add('hide');
+      content.classList.add('show');
+      setTimeout(() => {
+        intro.style.display = 'none';
+      }, 2500);
+    }
+
+    function toggleMusic() {
+      const music = document.getElementById('bgMusic');
+      const icon = document.getElementById('musicIcon');
+      if (music.paused) {
+        music.play();
+        icon.classList.remove('fa-music');
+        icon.classList.add('fa-pause');
+      } else {
+        music.pause();
+        icon.classList.remove('fa-pause');
+        icon.classList.add('fa-music');
+      }
+    }
+
+    
+    for (let i = 0; i < 20; i++) {
+      let heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (6 + Math.random() * 5) + 's';
+      document.body.appendChild(heart);
+    }
+  </script>
+</body>
+
+</html>
